@@ -1,0 +1,26 @@
+# project-specific folders and files
+public/bundle.js
+public/bundle.js.map
+
+# installed packages
+node_modules
+
+# OS-generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs and databases
+*.log
+
+# IDE files
+.idea
+.vscode
+
+# repos / submodules
+.git
+.svn
