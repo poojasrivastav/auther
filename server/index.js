@@ -3,11 +3,19 @@ const app = express();
 const path = require('path');
 const volleyball = require('volleyball');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 
 /* "Enhancing" middleware (does not send response, server-side effects only) */
 app.use(volleyball);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(session({
+	//this mandatory configuration ensures that session IDs are not predictable
+	secret: 'tongiscool',
+	//this option is recommended and reduces session concurrency issues
+	resave: false
+}));
+
 
 /* "Responding" middleware (may send a response back to client) */
 app.use('/api', require('./api'));
