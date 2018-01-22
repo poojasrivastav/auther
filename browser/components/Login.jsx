@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import { login } from '../redux/auth';
 /* -----------------    COMPONENT     ------------------ */
 
 class Login extends React.Component {
@@ -58,14 +58,30 @@ class Login extends React.Component {
 
   onLoginSubmit(event) {
     event.preventDefault();
-    const { message } = this.props;
-    console.log(`${message} isn't implemented yet`);
+    const { login } = this.props;
+    login({
+      email: event.target.email.value,
+      password: event.target.password.value
+    })
+
   }
 }
 
 /* -----------------    CONTAINER     ------------------ */
 
 const mapState = () => ({ message: 'Log in' });
-const mapDispatch = null;
+//it will give props.login and props.login would call my log-in function but pass it in to dispatch.
+//const mapDispatch = {login};
 
-export default connect(mapState, mapDispatch)(Login);
+//to use our login function to add a current user to the store(this.props is comming from mapDispatch--doubt)
+const mapDispatch = (dispatch, ownProps) => {
+  return {
+   login: creds => {
+     dispatch(login(creds))  // login here is asynchronous
+     ownProps.history.push('/');
+  }
+    
+  }
+}
+
+export default connect(mapState, mapDispatch)(Login); //it's login connected up to store

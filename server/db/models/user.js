@@ -14,6 +14,7 @@ const User = db.define('user', {
     allowNull: false,
     unique: true
   },
+  googleId: Sequelize.STRING,
   password: Sequelize.STRING,
   isAdmin: {
     type: Sequelize.BOOLEAN,
